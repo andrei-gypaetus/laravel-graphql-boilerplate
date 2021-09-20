@@ -1,0 +1,55 @@
+version: "3.9"
+services:
+  dockerhost:
+    image: qoomon/docker-host
+    cap_add: ["NET_ADMIN", "NET_RAW"]
+    restart: on-failure
+
+  db:
+    image: mysql:8
+    command: --innodb_use_native_aio=0
+    volumes:
+      - ./data/db:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "pass"
+    ports:
+      - "3306:3306"
+
+  mailcatcher:
+    restart: on-failure:10
+    image: dockage/mailcatcher:0.7.1
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+  
+  api:
+    build: .
+    volumes:
+      - .:/var/www/
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - db
+      - dockerhost
+    links:
+      - db
+      - dockerhost
+
+  nginx:
+    build: ./docker/nginx
+    volumes_from:
+      - api
+    ports:
+      - 8080:80
+ 
+  laravel-ws-server:
+    build:
+      context: .
+      dockerfile: ./docker/worker/Dockerfile
+    volumes_from:
+      - api
+    ports:
+      - 6001:6001
