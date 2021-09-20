@@ -1,4 +1,5 @@
 <?php
+
 namespace App\GraphQL\Directives;
 
 use Closure;
@@ -14,26 +15,30 @@ class CanAccessDirective extends BaseDirective implements FieldMiddleware, Defin
 {
     public static function definition(): string
     {
-        return /** @lang GraphQL */ <<<GRAPHQL
-"""
-Limit field access to users of a certain role.
-"""
-directive @canAccess(
-  """
-  The name of the role authorized users need to have.
-  """
-  requiredRole: String!
-) on FIELD_DEFINITION
-GRAPHQL;
+        return        /** @lang GraphQL */ <<<GRAPHQL
+            """
+            Limit field access to users of a certain role.
+            """
+            directive @canAccess(
+            """
+            The name of the role authorized users need to have.
+            """
+            requiredRole: String!
+            ) on FIELD_DEFINITION
+            GRAPHQL;
     }
 
     public function handleField(FieldValue $fieldValue, Closure $next): FieldValue
     {
         $originalResolver = $fieldValue->getResolver();
-
         return $next(
             $fieldValue->setResolver(
-                function ($root, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) use ($originalResolver) {
+                function (
+                    $root,
+                    array $args,
+                    GraphQLContext $context,
+                    ResolveInfo $resolveInfo
+                ) use ($originalResolver) {
                     $requiredRole = $this->directiveArgValue('requiredRole');
                     // Throw in case of an invalid schema definition to remind the developer
                     if ($requiredRole === null) {
@@ -42,10 +47,10 @@ GRAPHQL;
 
                     $user = $context->user();
                     if (
-                        // Unauthenticated users don't get to see anything
+                                 // Unauthenticated users don't get to see anything
                         ! $user
                         // The user's role has to match have the required role
-                        || !$user->hasRole($requiredRole)
+                                       || !$user->hasRole($requiredRole)
                     ) {
                         return null;
                     }
