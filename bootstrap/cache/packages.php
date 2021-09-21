@@ -1,11 +1,4 @@
 <?php return array (
-  'bensampo/laravel-enum' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'BenSampo\\Enum\\EnumServiceProvider',
-    ),
-  ),
   'beyondcode/laravel-websockets' => 
   array (
     'providers' => 
@@ -28,13 +21,6 @@
       'Flare' => 'Facade\\Ignition\\Facades\\Flare',
     ),
   ),
-  'fideloper/proxy' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    ),
-  ),
   'fruitcake/laravel-cors' => 
   array (
     'providers' => 
@@ -47,13 +33,6 @@
     'providers' => 
     array (
       0 => 'Joselfonseca\\LighthouseGraphQLPassport\\Providers\\LighthouseGraphQLPassportServiceProvider',
-    ),
-  ),
-  'laravel/legacy-factories' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Illuminate\\Database\\Eloquent\\LegacyFactoryServiceProvider',
     ),
   ),
   'laravel/passport' => 
@@ -81,13 +60,6 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'mll-lab/laravel-graphql-playground' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'MLL\\GraphQLPlayground\\GraphQLPlaygroundServiceProvider',
-    ),
-  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -104,15 +76,20 @@
   ),
   'nuwave/lighthouse' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
-      1 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
-      2 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
-    ),
     'aliases' => 
     array (
       'graphql' => 'Nuwave\\Lighthouse\\GraphQL',
+    ),
+    'providers' => 
+    array (
+      0 => 'Nuwave\\Lighthouse\\LighthouseServiceProvider',
+      1 => 'Nuwave\\Lighthouse\\Auth\\AuthServiceProvider',
+      2 => 'Nuwave\\Lighthouse\\GlobalId\\GlobalIdServiceProvider',
+      3 => 'Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider',
+      4 => 'Nuwave\\Lighthouse\\Pagination\\PaginationServiceProvider',
+      5 => 'Nuwave\\Lighthouse\\Scout\\ScoutServiceProvider',
+      6 => 'Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider',
+      7 => 'Nuwave\\Lighthouse\\Validation\\ValidationServiceProvider',
     ),
   ),
   'spatie/laravel-permission' => 
