@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4",
         "beyondcode/laravel-websockets": "^2.0.0-beta.36",
+        "fideloper/proxy": "^4.2",
         "friendsofphp/php-cs-fixer": "^3.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3.0",
@@ -67,6 +68,5 @@
             "@php artisan key:generate --ansi"
         ]
     },
-    "repositories": [  
-    ]
+    "repositories": []
 }
