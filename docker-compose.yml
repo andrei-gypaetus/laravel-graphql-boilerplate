@@ -20,6 +20,7 @@ services:
       - "3306:3306"
 
   mailcatcher:
+    container_name: mailcatcher
     restart: on-failure:10
     image: dockage/mailcatcher:0.7.1
     ports:
@@ -27,6 +28,7 @@ services:
       - "1025:1025"
   
   api:
+    container_name: dlmf-laravel-graphql-api
     build: .
     volumes:
       - .:/var/www/
@@ -37,6 +39,7 @@ services:
     links:
       - db
       - dockerhost
+      - mailcatcher
 
   nginx:
     build: ./docker/nginx
