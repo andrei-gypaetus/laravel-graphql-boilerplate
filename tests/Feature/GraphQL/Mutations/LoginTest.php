@@ -2,18 +2,13 @@
 
 namespace Tests\Feature\GraphQL\Mutations;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 use Tests\TestCase;
-use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
 use Joselfonseca\LighthouseGraphQLPassport\Events\UserLoggedIn;
 use Illuminate\Support\Facades\Event;
 
 class LoginTest extends TestCase
 {
-  use RefreshDatabase;
-  use MakesGraphQLRequests;
-
   /**
    * Test if the logged in user gets the access tokens.
    *
