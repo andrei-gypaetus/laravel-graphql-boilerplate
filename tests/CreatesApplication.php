@@ -42,4 +42,14 @@ trait CreatesApplication
         config()->set('lighthouse-graphql-passport.client_id', $client->id);
         config()->set('lighthouse-graphql-passport.client_secret', $client->secret);
     }
+
+    /**
+     * Create a passport client for testing.
+     */
+    public function createClientPersonal($user)
+    {
+        $client = app(ClientRepository::class)->createPersonalAccessClient($user->id, 'test', 'http://localhost');
+        config()->set('lighthouse-graphql-passport.client_id', $client->id);
+        config()->set('lighthouse-graphql-passport.client_secret', $client->secret);
+    }
 }
