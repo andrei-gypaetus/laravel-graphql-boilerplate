@@ -69,6 +69,11 @@ class LoginTest extends TestCase
     });
   }
 
+  /**
+   * Test if it returns error for invalid credentials.
+   *
+   * @return void
+   */
   public function test_it_returns_error_for_invalid_credentials()
   {
     Event::fake([UserLoggedIn::class]);
