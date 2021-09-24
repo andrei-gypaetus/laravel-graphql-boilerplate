@@ -3,10 +3,9 @@
 # Run composer install
 composer install
 
-# Generate app ket and clear cache
+# Generate app key and clear cache
 php artisan key:generate
 php artisan config:clear
-php artisan config:cache
 
 # Run migrations
 # php artisan migrate:fresh --seed
