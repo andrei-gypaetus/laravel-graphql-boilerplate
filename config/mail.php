@@ -89,11 +89,11 @@ return [
     ],
 
     'default_from' => [
-        'address' => env('MAIL_DEFAULT_FROM_ADDRESS', 'lot2@paragon.hub'),
+        'address' => env('MAIL_DEFAULT_FROM_ADDRESS', 'hello@example.com'),
     ],
 
     'default_to' => [
-        'address' => env('MAIL_DEFAULT_TO_ADDRESS', 'lot2@paragon.hub'),
+        'address' => env('MAIL_DEFAULT_TO_ADDRESS', 'hello@example.com'),
     ],
 
     /*
